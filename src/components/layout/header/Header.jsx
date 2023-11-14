@@ -1,4 +1,4 @@
-import { FiArrowLeft } from "react-icons/fi";
+import { FaArrowLeft } from "react-icons/fa";
 
 import { useAuth } from "../../../hooks/useAuth";
 import Hamburger from "../hamburger/Hamburger";
@@ -10,7 +10,7 @@ const Header = ({ backLink }) => {
   return (
     <header className={styles.header}>
       <button onClick={() => {}}>
-        <FiArrowLeft />
+        <FaArrowLeft />
       </button>
       <Hamburger />
     </header>

@@ -1,16 +1,16 @@
-import { useState } from "react";
 import { TfiMenuAlt, TfiClose } from "react-icons/tfi";
 
 import styles from "./styles.module.scss";
 import Menu from "./menu";
+import useOutside from "../../../hooks/useOutside";
 
 const Hamburger = () => {
-  const [isShow, setIsShow] = useState(false);
+  const { isShow, setIsShow, ref } = useOutside(false);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={ref}>
       <button onClick={() => setIsShow(!isShow)}>
-        {isShow ? <TfiClose color="white" /> : <TfiMenuAlt color="white" />}
+        {isShow ? <TfiClose /> : <TfiMenuAlt />}
       </button>
       <Menu isShow={isShow} />
     </div>

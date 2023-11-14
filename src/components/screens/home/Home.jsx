@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Layout from "./components/layout/Layout";
+import Layout from "../../layout/Layout";
 
-function App() {
+function Home() {
   const [count, setCount] = useState(0);
 
   return (
@@ -28,4 +28,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

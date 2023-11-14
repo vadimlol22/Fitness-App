@@ -1,11 +1,22 @@
-import Header from "./header/Header";
+import clsx from "clsx";
 
-const Layout = ({ children }) => {
+import Header from "./header/Header";
+import styles from "./styles.module.scss";
+
+const Layout = ({ children, bgImage, heading = "", backLink = "/" }) => {
   return (
-    <div>
-      <Header />
-      {children}
-    </div>
+    <section
+      className={clsx(styles.wrapper, {
+        [styles.otherPage]: !!heading,
+      })}
+      styles={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <Header backLink={backLink} />
+
+      {heading && <h1 className={styles.heading}>{heading}</h1>}
+
+      {children && <div>{children}</div>}
+    </section>
   );
 };
 
