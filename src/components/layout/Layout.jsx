@@ -9,7 +9,7 @@ const Layout = ({ children, bgImage, heading = "", backLink = "/" }) => {
       className={clsx(styles.wrapper, {
         [styles.otherPage]: !!heading,
       })}
-      styles={{ backgroundImage: `url(${bgImage})` }}
+      style={{ backgroundImage: `url(${bgImage})` }}
     >
       <Header backLink={backLink} />
 

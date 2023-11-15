@@ -1,5 +1,18 @@
-const Button = () => {
-  return <div>button</div>;
+import clsx from "clsx";
+
+import styles from "./styles.module.scss";
+
+const Button = ({ children, clickHandler, size = "xl" }) => {
+  return (
+    <div className={styles.wrapper}>
+      <button
+        className={clsx(styles.button, styles[size])}
+        onClick={clickHandler}
+      >
+        {children}
+      </button>
+    </div>
+  );
 };
 
-export default button;
+export default Button;
