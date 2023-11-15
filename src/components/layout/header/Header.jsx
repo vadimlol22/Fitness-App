@@ -1,17 +1,36 @@
 import { FaArrowLeft } from "react-icons/fa";
+import { SlUser } from "react-icons/sl";
 
 import { useAuth } from "../../../hooks/useAuth";
 import Hamburger from "../hamburger/Hamburger";
 import styles from "./styles.module.scss";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const Header = ({ backLink }) => {
+const Header = ({ backLink = "" }) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
   const { isAuth } = useAuth();
 
   return (
     <header className={styles.header}>
-      <button onClick={() => {}}>
-        <FaArrowLeft />
-      </button>
+      {pathname !== "/" ? (
+        <button
+          onClick={() => {
+            navigate(backLink);
+          }}
+        >
+          <FaArrowLeft />
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            navigate("/profile");
+          }}
+        >
+          <SlUser />
+        </button>
+      )}
       <Hamburger />
     </header>
   );
