@@ -22,16 +22,18 @@ const Auth = () => {
     mode: "onChange",
   });
 
-  const { mutate, isLoading } = useMutation(
-    ["auth"],
-    ({ email, password }) => AuthService.main(email, password, type),
-    {
-      onSuccess: (data) => {
-        alert("success");
-        reset();
-      },
-    }
-  );
+  const { mutate, isLoading } = useMutation({
+    mutationKey: ["auth"],
+    mutationFn: ({ email, password }) => {
+      AuthService.main(email, password, type);
+    },
+
+    onSuccess: (data) => {
+      alert("success");
+      reset();
+    },
+  });
+
   const onSubmit = (data) => {
     mutate(data);
   };
@@ -55,6 +57,7 @@ const Auth = () => {
           <Field
             error={errors?.password?.message}
             name="password"
+            autoComplete="off"
             register={register}
             options={{
               required: "Password is required",
