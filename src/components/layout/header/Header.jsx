@@ -1,10 +1,10 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { SlUser } from "react-icons/sl";
 
-import { useAuth } from "../../../hooks/useAuth";
 import Hamburger from "../hamburger/Hamburger";
 import styles from "./styles.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Header = ({ backLink = "" }) => {
   const { pathname } = useLocation();
@@ -14,10 +14,10 @@ const Header = ({ backLink = "" }) => {
 
   return (
     <header className={styles.header}>
-      {pathname !== "/" ? (
+      {pathname !== "/" || pathname !== "/auth" ? (
         <button
           onClick={() => {
-            navigate(backLink);
+            navigate(isAuth ? backLink : "/auth");
           }}
         >
           <FaArrowLeft />
@@ -25,13 +25,13 @@ const Header = ({ backLink = "" }) => {
       ) : (
         <button
           onClick={() => {
-            navigate(isAuth ? "/profile" : "/auth");
+            navigate("/profile");
           }}
         >
           <SlUser />
         </button>
       )}
-      <Hamburger />
+      {isAuth && <Hamburger />}
     </header>
   );
 };

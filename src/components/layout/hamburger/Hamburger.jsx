@@ -12,7 +12,7 @@ const Hamburger = () => {
       <button onClick={() => setIsShow(!isShow)}>
         {isShow ? <TfiClose /> : <TfiMenuAlt />}
       </button>
-      <Menu isShow={isShow} />
+      <Menu isShow={isShow} setIsShow={setIsShow} />
     </div>
   );
 };

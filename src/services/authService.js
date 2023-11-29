@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 
 import { mainApi } from "../config/mainApi";
+import { TOKEN } from "../app.constants";
 
 class AuthService {
   async main(email, password, type) {
@@ -10,7 +11,7 @@ class AuthService {
         password,
       });
 
-      if (data.token) Cookies.set("red", data.token);
+      if (data.token) Cookies.set(TOKEN, data.token);
 
       return data;
     } catch (error) {
