@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 
-const Header = ({ backLink = "" }) => {
+const Header = ({ backLink = "/" }) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -14,24 +14,28 @@ const Header = ({ backLink = "" }) => {
 
   return (
     <header className={styles.header}>
-      {pathname !== "/" || pathname !== "/auth" ? (
-        <button
-          onClick={() => {
-            navigate(isAuth ? backLink : "/auth");
-          }}
-        >
-          <FaArrowLeft />
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            navigate("/profile");
-          }}
-        >
-          <SlUser />
-        </button>
+      {isAuth && (
+        <>
+          {pathname === "/" && isAuth ? (
+            <button
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
+              <SlUser />
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                navigate(isAuth ? backLink : "/auth");
+              }}
+            >
+              <FaArrowLeft />
+            </button>
+          )}
+          <Hamburger />
+        </>
       )}
-      {isAuth && <Hamburger />}
     </header>
   );
 };
