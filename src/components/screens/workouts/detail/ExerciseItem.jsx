@@ -16,7 +16,7 @@ const ExerciseItem = ({ exerciseLog }) => {
         aria-label="Move to exercise"
         onClick={() => navigation(`/exercise/${exerciseLog.id}`)}
       >
-        {/* <span>{exerciseLog.exercise.name}</span> */}
+        <span>{exerciseLog.exercise.name}</span>
         <img
           src={import.meta.env.VITE_SERVER_URL + exerciseLog.exercise.iconPath}
           height="34"
