@@ -5,10 +5,23 @@ import Loader from "../../ui/Loader";
 import { useAuthPage } from "./useAuthPage";
 
 import styles from "./styles.module.scss";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Auth = () => {
   const { errors, handleSubmit, isLoading, onSubmit, register, setType } =
     useAuthPage();
+
+  // const { isAuth } = useAuth();
+
+  // const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   if (isAuth) {
+  //     navigate("/");
+  //   }
+  // }, [isAuth, navigate]);
 
   return (
     <>

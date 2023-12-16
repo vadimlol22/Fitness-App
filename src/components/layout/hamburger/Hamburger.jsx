@@ -9,7 +9,7 @@ const Hamburger = () => {
 
   return (
     <div className={styles.wrapper} ref={ref}>
-      <button onClick={() => setIsShow(!isShow)}>
+      <button onClick={() => setIsShow(!isShow)} aria-label="Open menu">
         {isShow ? <TfiClose /> : <TfiMenuAlt />}
       </button>
       <Menu isShow={isShow} setIsShow={setIsShow} />

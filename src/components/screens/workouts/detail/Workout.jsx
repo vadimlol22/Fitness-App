@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate, useParams } from "react-router-dom";
 
 import styles from "./styles.module.scss";
 import workoutLogService from "../../../../services/workout/workoutLogService";
@@ -7,6 +7,7 @@ import HeaderWorkout from "./HeaderWorkout";
 import Loader from "../../../ui/Loader";
 import { Fragment } from "react";
 import ExerciseItem from "./ExerciseItem";
+import Button from "../../../ui/button/Button";
 
 const Workout = () => {
   const { id } = useParams();
@@ -21,11 +22,20 @@ const Workout = () => {
     select: ({ data }) => data,
   });
 
-  console.log(data);
+  const navigate = useNavigate();
+
+  const { mutate } = useMutation({
+    mutationKey: ["complete workout"],
+    mutationFn: () => workoutLogService.complete(id),
+
+    onSuccess: () => {
+      navigate("/workouts");
+    },
+  });
 
   return (
     <>
-      <HeaderWorkout workoutLog={workoutLog} isSuccess={isSuccess} />
+      <HeaderWorkout isSuccess={isSuccess} workoutLog={workoutLog} />
       <div
         className="wrapper-inner-page"
         style={{ paddingLeft: 0, paddingRight: 0 }}
@@ -48,6 +58,7 @@ const Workout = () => {
             ))}
           </div>
         )}
+        <Button clickHandler={() => mutate()}>Complete workout</Button>
       </div>
     </>
   );
